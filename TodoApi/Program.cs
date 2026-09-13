@@ -116,12 +116,12 @@ todoGroup.MapPost("/", async (TodoPostDto dto, AppDbContext db) =>
     var lastTodo = await db.Todos.OrderByDescending(t => t.Id).FirstOrDefaultAsync();
     var  nextId = lastTodo is null ? 1 : lastTodo.Id + 1;
 
-    var todo =new Todoitem
+    var todo = new TodoItem
     {
-    id=nextId,
-    Title = dto.Title,
-    IsCompleted = false,
-    CreatedAt = DateTime.UtcNow
+        Id = nextId,
+        Title = dto.Title,
+        IsCompleted = false,
+        CreatedAt = DateTime.UtcNow
     };
 
     db.Todos.Add(todo);
